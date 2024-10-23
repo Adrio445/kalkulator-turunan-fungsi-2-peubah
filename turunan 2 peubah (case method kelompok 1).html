@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Turunan Fungsi Dua Peubah</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        input[type="text"], button {
+            padding: 10px;
+            margin: 10px 0;
+            width: calc(100% - 22px);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        .result {
+            background-color: #e7f3fe;
+            border: 1px solid #b8daff;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .separator {
+            height: 2px;
+            background: #4CAF50;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator Turunan Fungsi Dua Peubah</h1>
+        
+        <h2>Nama Kelompok</h2>
+        <p>1. Aditya Ario Pangestu (4231230015)</p>
+        <p>2. Rehmuliana Niken Sagala (4233230018)</p>
+        <p>3. Rinto Manik (4233230038)</p>
+
+        <div class="separator"></div>
+
+        <h2>Penjelasan Materi</h2>
+        <p>
+            <strong>Kalkulus Turunan Fungsi Dua Peubah</strong>
+            <br>
+            Fungsi dua peubah adalah fungsi yang bergantung pada dua variabel, biasanya dinyatakan dalam bentuk f(x, y).
+            Dalam kalkulus, kita bisa mencari turunan dari fungsi ini dengan menggunakan turunan parsial.
+            
+            Turunan parsial dari f terhadap x dan y masing-masing menunjukkan bagaimana fungsi berubah ketika
+            hanya salah satu variabel berubah, sementara variabel lainnya tetap.
+            
+            - <strong>Turunan Parsial terhadap x</strong>: 
+            f_x = ∂f/∂x
+            <br>
+            - <strong>Turunan Parsial terhadap y</strong>: 
+            f_y = ∂f/∂y
+            
+            Dengan memahami turunan parsial, kita bisa menganalisis sifat-sifat fungsi dua peubah
+            seperti titik maksimum dan minimum, serta kontur fungsi.
+        </p>
+
+        <h2>Masukkan Fungsi</h2>
+        <label for="fungsi">Fungsi f(x, y):</label>
+        <input type="text" id="fungsi" placeholder="Contoh: x^2 + y^2">
+        
+        <label for="x">Nilai x:</label>
+        <input type="text" id="x" placeholder="Masukkan nilai x">
+        
+        <label for="y">Nilai y:</label>
+        <input type="text" id="y" placeholder="Masukkan nilai y">
+
+        <button onclick="hitungTurunan()">Hitung Turunan</button>
+
+        <h2>Hasil</h2>
+        <div id="hasil" class="result"></div>
+    </div>
+
+    <script>
+        function hitungTurunan() {
+            const fungsi = document.getElementById('fungsi').value;
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+
+            try {
+                const f_x = math.derivative(fungsi, 'x').evaluate({ x: x, y: y });
+                const f_y = math.derivative(fungsi, 'y').evaluate({ x: x, y: y });
+
+                const hasil = `
+                    Turunan parsial terhadap x (f_x) di titik (${x}, ${y}) : ${f_x}
+                    Turunan parsial terhadap y (f_y) di titik (${x}, ${y}) : ${f_y}
+                `;
+                document.getElementById('hasil').innerText = hasil;
+            } catch (error) {
+                document.getElementById('hasil').innerText = "Error dalam menghitung turunan: " + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
